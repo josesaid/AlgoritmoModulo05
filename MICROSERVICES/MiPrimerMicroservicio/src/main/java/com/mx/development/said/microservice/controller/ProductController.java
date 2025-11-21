@@ -1,7 +1,6 @@
 package com.mx.development.said.microservice.controller;
 
 import com.mx.development.said.microservice.dto.ResponseProduct;
-import com.mx.development.said.microservice.entity.ProductEntity;
 import com.mx.development.said.microservice.service.ProductService;
 import com.mx.development.said.microservice.dto.RequestProduct;
 import lombok.extern.slf4j.Slf4j;
@@ -15,8 +14,6 @@ import java.util.List;
 @RequestMapping("/api/v1/products")
 @Slf4j
 public class ProductController {
-
-    //http://localhost:8585/api/v1/products/
 
     private final ProductService productService;
 
