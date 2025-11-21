@@ -1,4 +1,4 @@
-package com.mx.development.said.microservice;
+package com.mx.development.said.microservice.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
