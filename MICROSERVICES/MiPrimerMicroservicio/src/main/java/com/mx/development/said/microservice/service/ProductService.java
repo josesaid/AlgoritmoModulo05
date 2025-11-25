@@ -1,5 +1,6 @@
 package com.mx.development.said.microservice.service;
 
+import com.mx.development.said.microservice.controller.ProductController;
 import com.mx.development.said.microservice.dto.RequestProduct;
 import com.mx.development.said.microservice.dto.ResponseProduct;
 import com.mx.development.said.microservice.entity.ProductEntity;
@@ -9,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -37,9 +39,26 @@ public class ProductService {
 
 
 
-    public RequestProduct getProduct(){
+    /*public RequestProduct getProduct(){
         log.info("Getting product...");
         return new RequestProduct("Producto ABC", "Descripcion del producto ABC*");
+    }*/
+
+    public Optional<ResponseProduct> getProductById(Long productoId) {
+        return productRepository.findById(productoId)
+                .map(ProductTools::createResponseProduct);
+    }
+
+
+
+    public List<ResponseProduct> findByStatus(String status) {
+        log.info("clase: {}", ProductService.class.getClass().getSimpleName());
+        List<ProductEntity> productEntityList = productRepository.findByStatus(status);
+        log.info("Encontró {} productos con el estatus: {}", productEntityList.size(), status);
+
+        return productEntityList.stream()
+                .map(ProductTools::createResponseProduct)
+                .toList();
     }
 
 }

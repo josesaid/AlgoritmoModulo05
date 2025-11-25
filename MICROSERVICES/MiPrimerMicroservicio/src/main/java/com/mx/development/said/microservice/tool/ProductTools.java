@@ -12,6 +12,8 @@ public class ProductTools {
         ProductEntity productEntity = new ProductEntity();
         productEntity.setName(product.getName());
         productEntity.setDescription(product.getDescription());
+        productEntity.setPrice(product.getPrice());
+        productEntity.setStatus(product.getStatus());
         return productEntity;
     }
 
@@ -22,7 +24,8 @@ public class ProductTools {
         responseProduct.setDescription(productEntityCreated.getDescription());
         responseProduct.setCreatedAt(LocalDateTime.now().toString());
         responseProduct.setUpdatedAt(LocalDateTime.now().toString());
-        responseProduct.setStatus(ProductStatus.ACTIVE);
+        responseProduct.setStatus(productEntityCreated.getStatus());
+        responseProduct.setPrice(productEntityCreated.getPrice());
         return responseProduct;
     }
 

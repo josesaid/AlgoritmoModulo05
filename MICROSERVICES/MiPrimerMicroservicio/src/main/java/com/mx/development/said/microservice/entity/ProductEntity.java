@@ -21,4 +21,9 @@ public class ProductEntity {
     @Column(length = 1000)
     private String description;
 
+    @Column(length = 30)
+    private String price;
+
+    @Column(length = 30)
+    private String status;
 }
