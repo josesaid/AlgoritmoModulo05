@@ -4,6 +4,7 @@ import com.mx.development.said.microservice.controller.ProductController;
 import com.mx.development.said.microservice.dto.RequestProduct;
 import com.mx.development.said.microservice.dto.ResponseProduct;
 import com.mx.development.said.microservice.entity.ProductEntity;
+import com.mx.development.said.microservice.exception.ProductNotFoundException;
 import com.mx.development.said.microservice.repository.ProductRepository;
 import com.mx.development.said.microservice.tool.ProductTools;
 import lombok.extern.slf4j.Slf4j;
@@ -38,17 +39,22 @@ public class ProductService {
     }
 
 
-
-    /*public RequestProduct getProduct(){
-        log.info("Getting product...");
-        return new RequestProduct("Producto ABC", "Descripcion del producto ABC*");
-    }*/
-
+/*
     public Optional<ResponseProduct> getProductById(Long productoId) {
         return productRepository.findById(productoId)
                 .map(ProductTools::createResponseProduct);
     }
+*/
+    public ResponseProduct getProductById(Long productoId) {
+        Optional<ProductEntity> optionalProductEntity = productRepository.findById(productoId);
 
+        if(optionalProductEntity.isEmpty()){
+            throw new ProductNotFoundException(productoId);
+        }
+
+        return ProductTools.createResponseProduct(optionalProductEntity.get());
+
+    }
 
 
     public List<ResponseProduct> findByStatus(String status) {

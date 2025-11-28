@@ -3,14 +3,12 @@ package com.mx.development.said.microservice.controller;
 import com.mx.development.said.microservice.dto.ResponseProduct;
 import com.mx.development.said.microservice.service.ProductService;
 import com.mx.development.said.microservice.dto.RequestProduct;
-import com.mx.development.said.microservice.tool.ProductTools;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/products")
@@ -45,13 +43,18 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    @GetMapping("/{productoId}")
+    /*@GetMapping("/{productoId}")
     public ResponseEntity<ResponseProduct> getProductById(@PathVariable Long productoId) {
         Optional<ResponseProduct> responseOptional = productService.getProductById(productoId);
 
         return responseOptional
                 .map(response -> ResponseEntity.ok(response))
                 .orElseGet(() -> ResponseEntity.notFound().build());
+
+    }*/
+    @GetMapping("/{productoId}")
+    public ResponseProduct getProductById(@PathVariable Long productoId) {
+        return productService.getProductById(productoId);
     }
 
 
