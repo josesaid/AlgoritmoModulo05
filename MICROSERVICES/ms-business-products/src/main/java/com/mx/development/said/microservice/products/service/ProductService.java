@@ -1,11 +1,11 @@
-package com.mx.development.said.microservice.service;
+package com.mx.development.said.microservice.products.service;
 
-import com.mx.development.said.microservice.dto.RequestProduct;
-import com.mx.development.said.microservice.dto.ResponseProduct;
-import com.mx.development.said.microservice.entity.ProductEntity;
-import com.mx.development.said.microservice.exception.ProductNotFoundException;
-import com.mx.development.said.microservice.repository.ProductRepository;
-import com.mx.development.said.microservice.tool.ProductTools;
+import com.mx.development.said.microservice.products.dto.RequestProduct;
+import com.mx.development.said.microservice.products.dto.ResponseProduct;
+import com.mx.development.said.microservice.products.entity.ProductEntity;
+import com.mx.development.said.microservice.products.exception.ProductNotFoundException;
+import com.mx.development.said.microservice.products.repository.ProductRepository;
+import com.mx.development.said.microservice.products.tool.ProductTools;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

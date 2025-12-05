@@ -1,0 +1,6 @@
+Para probar el perfil de development usamos:
+mvn spring-boot:run -Dspring-boot.run.profiles=development
+
+
+Para probar el perfil de testing usamos:
+mvn spring-boot:run -Dspring-boot.run.profiles=testing
