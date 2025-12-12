@@ -1,0 +1,6 @@
+docker run --name mysql-test-product-microservice \
+  --network ms-products-v1 \
+  -p 3307:3306 \
+  -e MYSQL_ROOT_PASSWORD=123456 \
+  -e MYSQL_DATABASE=products_db \
+  -d mysql:8.0
