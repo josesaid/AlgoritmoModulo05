@@ -21,6 +21,13 @@ public class ProductController {
         this.productService = productService;
     }
 
+    @PutMapping("/{productoId}")
+    public ResponseEntity<ResponseProduct> updateProduct(@PathVariable Long productoId, @RequestBody RequestProduct requestProduct) {
+        log.info("Updating product with ID: {}", productoId);
+        ResponseProduct updatedProduct = productService.updateProduct(productoId, requestProduct);
+        return ResponseEntity.status(HttpStatus.OK).body(updatedProduct);
+    }
+
     @GetMapping("/")
     public ResponseEntity<List<ResponseProduct>> getAllProducts() {
         List<ResponseProduct> products = productService.findAll();
@@ -43,15 +50,7 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    /*@GetMapping("/{productoId}")
-    public ResponseEntity<ResponseProduct> getProductById(@PathVariable Long productoId) {
-        Optional<ResponseProduct> responseOptional = productService.getProductById(productoId);
-
-        return responseOptional
-                .map(response -> ResponseEntity.ok(response))
-                .orElseGet(() -> ResponseEntity.notFound().build());
-
-    }*/
+ 
     @GetMapping("/{productoId}")
     public ResponseProduct getProductById(@PathVariable Long productoId) {
         return productService.getProductById(productoId);
@@ -72,5 +71,10 @@ public class ProductController {
     }
 
 
-
+    @DeleteMapping("/{productoId}")
+    public ResponseEntity<Void> deleteProduct(@PathVariable Long productoId) {
+        log.info("Deleting product with ID: {}", productoId);
+        productService.deleteProduct(productoId);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
 }

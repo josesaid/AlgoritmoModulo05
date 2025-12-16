@@ -61,4 +61,34 @@ public class ProductService {
                 .toList();
     }
 
+    public ResponseProduct updateProduct(Long productId, RequestProduct newProductData) {
+        log.info("Updating product with ID: {}", productId);
+        Optional<ProductEntity> optionalProduct = productRepository.findById(productId);
+
+        if (optionalProduct.isEmpty()) {
+            throw new ProductNotFoundException(productId);
+        }
+
+        ProductEntity existingProduct = optionalProduct.get();
+        ProductEntity updatedProduct = updateWithNewValues(existingProduct, newProductData);
+        updatedProduct = productRepository.save(updatedProduct);
+        ResponseProduct responseProduct = ProductTools.createResponseProduct(updatedProduct);
+        log.info("Product updated: {}", responseProduct);
+
+        return responseProduct;
+    }
+
+    private ProductEntity updateWithNewValues(ProductEntity existingProduct, RequestProduct newProductData) {
+        existingProduct.setName(newProductData.getName());
+        existingProduct.setDescription(newProductData.getDescription());
+        existingProduct.setPrice(newProductData.getPrice());
+        return existingProduct;
+    }
+
+
+    public void deleteProduct(Long productoId) {
+        log.info("Deleting product with ID: {}", productoId);
+        productRepository.deleteById(productoId);
+    }
+
 }

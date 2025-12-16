@@ -19,6 +19,7 @@ public class InsertIntoDBRowsCommandLineRunner implements CommandLineRunner{
 
     @Override
     public void run(String... args) throws Exception {
+
         ProductEntity productEntity01 = new ProductEntity();
         productEntity01.setName("Tennis Jordan 34 rojo");
         productEntity01.setDescription("Tennis Jordan 34 Blanco con Rojo");
