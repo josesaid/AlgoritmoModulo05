@@ -4,3 +4,17 @@ docker run --name mysql-test-clients-microservice \
   -e MYSQL_ROOT_PASSWORD=123456 \
   -e MYSQL_DATABASE=clients_db \
   -d mysql:8.0
+
+
+construir la imagen:
+"Tengo este Dockerfile <file>, dame el comando para construir la imagen en mi PC."
+docker buildx build \
+    --platform linux/arm64 \
+    -t ms-business-clients:1.0 .
+
+
+#Comando usado para correr un contenedor:
+docker run -d \
+  --name ms-business-clients \
+  -p 8082:8082 \
+  ms-business-clients:1.0

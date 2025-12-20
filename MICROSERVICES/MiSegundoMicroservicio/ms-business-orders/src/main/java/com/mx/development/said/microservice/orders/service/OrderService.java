@@ -47,7 +47,7 @@ public class OrderService {
 
             OrderEntity orderEntity = OrderTools.requestOrderToOrderEntity(order);
             OrderEntity orderCreated = orderRepository.save(orderEntity);
-            log.info("Order created: {}", responseOrder);
+            log.info("Order created: {}", orderCreated);
 
             responseOrder = OrderTools.createResponseOrder(orderCreated);
             log.info("Order in review: {}", responseOrder);
@@ -63,6 +63,8 @@ public class OrderService {
                     responseOrder.getClientId(),
                     responseOrder.getAddressId(),
                     responseOrder.getStatus(),
+                    responseOrder.getCreatedAt(),
+                    responseOrder.getUpdatedAt(),
                     responseOrder.getQuantity()
             );
             inventoryKafkaProducer.sendInventoryEvent(storeMessageItem);

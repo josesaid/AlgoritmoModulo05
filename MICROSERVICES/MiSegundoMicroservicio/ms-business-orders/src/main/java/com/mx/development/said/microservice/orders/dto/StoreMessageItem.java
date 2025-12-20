@@ -13,5 +13,7 @@ public class StoreMessageItem {
     private String clientId;
     private String addressId;
     private String status;
+    private String createdAt;
+    private String updatedAt;
     private String quantity;
 }

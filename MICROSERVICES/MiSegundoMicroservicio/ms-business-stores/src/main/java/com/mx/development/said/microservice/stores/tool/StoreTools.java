@@ -43,7 +43,7 @@ public class StoreTools {
 
         String orderStatus = new StoreTools(new RestTemplate()).getOrderStatus(venta.getOrderId());
         if (orderStatus != null) {
-            storeEntity.setDescription("said was here: <" + orderStatus+">");
+            storeEntity.setDescription(orderStatus);
         }
 
         return storeEntity;
@@ -53,7 +53,6 @@ public class StoreTools {
         ResponseStore responseStore = new ResponseStore();
         responseStore.setId(ventaCreated.getId());
         responseStore.setDescription(ventaCreated.getDescription());
-        log.info("Order STATUS: {}", ventaCreated.getStatus());
         responseStore.setStatus("ORDER_DELIVERED");
         log.info("Order STATUS: {}", responseStore.getStatus());
         String now = LocalDateTime.now().toString();
@@ -68,15 +67,8 @@ public class StoreTools {
             return "NO_STATUS_DEFINED";
         }
 
-        String url = String.format("http://localhost:8081/api/v1/orders/%s", orderId);
-        /*try {
-            ResponseOrder responseOrder = restTemplate.getForObject(url, ResponseOrder.class);
-            return (responseOrder != null && responseOrder.getStatus() != null)
-                    ? responseOrder.getStatus()
-                    : "ORDER_IN_REVIEW";
-        } catch (Exception e) {
-            return "ORDER_IN_REVIEW";
-        }*/
+        String url = String.format("http://localhost:8084/api/v1/orders/%s", orderId);
+
         try{
             ResponseOrder responseOrder = restTemplate.getForObject(url, ResponseOrder.class);
             if (responseOrder.getStatus().equalsIgnoreCase("ORDER_IN_REVIEW")){

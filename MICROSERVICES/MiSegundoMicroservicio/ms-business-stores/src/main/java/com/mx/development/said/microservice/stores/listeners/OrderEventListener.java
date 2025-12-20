@@ -26,6 +26,10 @@ public class OrderEventListener {
 
         ObjectMapper mapper = new ObjectMapper();
         RequestStore venta = mapper.readValue(message, RequestStore.class);
+        log.info("Venta realizada: {}", venta);
+
+        //status = ORDER_IN_REVIEW
+        //System.out.println(venta.getStatus()==null?"SAID ES NULO" : "----->>"+venta.getStatus()+"<<<-----");
 
         ResponseStore ventaSalida = storeService.createStoreSell(venta);
         if(ventaSalida.getId()!=null){

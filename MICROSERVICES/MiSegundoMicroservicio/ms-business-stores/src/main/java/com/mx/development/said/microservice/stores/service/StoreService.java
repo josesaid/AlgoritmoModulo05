@@ -20,10 +20,10 @@ public class StoreService {
 
     public ResponseStore createStoreSell(RequestStore venta){
         StoreEntity storeEntity = StoreTools.requestProductToProductEntity(venta);
-        StoreEntity storeCreated = storeRepository.save(storeEntity);
-        ResponseStore responseProduct = StoreTools.createResponseStore(storeCreated);
-        log.info("Product created: {}", responseProduct);
-        return responseProduct;
+        StoreEntity storeProductSold = storeRepository.save(storeEntity);
+        ResponseStore responseProductSold = StoreTools.createResponseStore(storeProductSold);
+        log.info("Producto vendido: {}", responseProductSold);
+        return responseProductSold;
     }
 
 
