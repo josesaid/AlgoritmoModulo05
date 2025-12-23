@@ -1,0 +1,18 @@
+package com.mx.development.said.microservice.address.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class RequestAddress {
+    private String street;
+    private String city;
+    private String state;
+    private String country;
+    private String postalCode;
+    private String status;
+}
+// lo que se envia

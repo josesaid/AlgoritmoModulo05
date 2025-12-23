@@ -4,3 +4,27 @@ docker run --name mysql-test-product-microservice \
   -e MYSQL_ROOT_PASSWORD=123456 \
   -e MYSQL_DATABASE=products_db \
   -d mysql:8.0
+
+
+
+
+construir la imagen:
+"Tengo este Dockerfile <file>, dame el comando para construir la imagen en mi PC."
+docker buildx build \
+    --platform linux/arm64 \
+    -t ms-business-products:1.0 .
+
+
+#Comando usado para correr un contenedor:
+docker run -d \
+  --name ms-business-products \
+  -p 8082:8082 \
+  ms-business-products:1.0
+
+
+TAG de una imagen:
+docker tag ms-business-products:1.0 josesaid08/ms-business-products:1.0
+
+
+push al repositorio
+docker push josesaid08/ms-business-stores:1.0
